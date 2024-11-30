@@ -1,3 +1,5 @@
+//Órai anayg
+
 // function player(nickname){
 //     this.nickname = nickname;
 //     this.playedMatch = 0;
@@ -30,25 +32,26 @@
 
 
 //_______________________________________________________________________________________
-//12.feladattól
-function Person(){
-    this.name = "Géza";
+//12.feladattól 17. feladatig
+function Person(name, student){
+    this.name = name;
+    this.student = student;
 }
 
-Person.prototype.GetName =
-function(){
-    return this.name;
+function GetName(name, student){
+    Person.call(this, name, student);
+    
 }
 
-Person.prototype.Student= 
-function(school){
-    this.school = school;
-}
+//16.feladatnál kell használni(valahogy)
 //Object.setPrototypeOf(Student.prototype, Person.prototype)
 
 
+console.log(new GetName("Géza").name, new GetName("Géza", "Student").student)
 
 //_______________________________________________________________________________________
+//Órai anyag
+
 
 // class player{
 //     constructor(nickname){
@@ -78,8 +81,7 @@ function(school){
 
 
 //const gomszab = new player("gomszab");
-const person = new Person();
-console.log(person.GetName());
+
 
 
 // gomszab.play();
