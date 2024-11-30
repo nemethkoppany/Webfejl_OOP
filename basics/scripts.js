@@ -21,11 +21,10 @@ function(){
     }
 }
 
-function printTierLevel(nickname, tierLevel){
-   this.nickname = nickname;
-   this.tierLevel = tierLevel;
+function printTierLevel(player){
+  
 
-   console.log(this.nickname, this.tierLevel);
+   console.log(player.nickname, player.getTierLevel());
 
 }
 
@@ -59,4 +58,4 @@ const gomszab = new player("gomszab");
 gomszab.play();
 gomszab.getTierLevel();
 console.log(gomszab.getTierLevel());
-printTierLevel(gomszab.nickname, gomszab.getTierLevel());
+printTierLevel(gomszab);
