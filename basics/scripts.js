@@ -52,31 +52,80 @@
 //_______________________________________________________________________________________
 //19.feladat
 
-class Person{
-    constructor(name){
+// class Person{
+//     constructor(name){
+//         this.name = name;
+//     }
+//     nameSeparator(){
+//         return ":";
+//     }   
+// }
+
+// class FullnameOfPerson extends Person{
+//     constructor(name, student){
+//         super(name);
+//         this.student = student;
+//     }
+
+//     fullname(){
+//         return this.name + super.nameSeparator() + this.student;
+//     }
+// }
+
+// const personproperties = new FullnameOfPerson("Géza", "Student");
+// console.log(personproperties.name);
+// console.log(personproperties.fullname());
+
+
+
+
+//_______________________________________________________________________________________
+//20.feladat
+
+
+class Animal{
+    constructor(name, sound){
         this.name = name;
+        this.sound = sound;
     }
-    nameSeparator(){
-        return ":";
-    }   
-}
-
-class FullnameOfPerson extends Person{
-    constructor(name, student){
-        super(name);
-        this.student = student;
-    }
-
-    fullname(){
-        return this.name + super.nameSeparator() + this.student;
+    sound(){
+        return this.sound;
     }
 }
 
-const personproperties = new FullnameOfPerson("Géza", "Student");
-console.log(personproperties.name);
-console.log(personproperties.fullname());
+class Mammal extends Animal{
+    constructor(name, sound, walk){
+        super(name, sound);
+        this.walk = walk;
+    }
+ 
+    walk(){
+        return this.walk
+    }
 
+    action(){
+        console.log( "a" + this.name +  this.sound + " hallat és " + this.walk);
+    }
 
+}
+
+class Bird extends Animal{
+    constructor(name, sound, fly){
+        super(name, sound);
+        this.fly = fly;
+    }
+    fly(){
+        return this.fly
+    }
+    action(){
+        console.log( "a" + this.name +  this.sound + " hallat és " + this.fly);
+    }
+}
+const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangok", "sétál") 
+const animal2 = new Bird(' flamingó', " flmaingó hangok", "repül ")
+
+animal1.action();
+animal2.action();
 
 
 //_______________________________________________________________________________________
