@@ -32,22 +32,52 @@
 
 
 //_______________________________________________________________________________________
-//12.feladattól 17. feladatig
-function Person(name, student){
-    this.name = "Géza";
-    this.student = student;
-}
+//12.feladattól 18. feladatig
+// function Person(name, student){
+//     this.name = name;
+//     this.student = student;
+// }
 
-function GetName(name, student){
-    Person.call(this, name, student);
+// function GetName(name, student){
+//     Person.call(this, name, student);
     
-}
+// }
 
 //16.feladatnál kell használni(valahogy)
 //Object.setPrototypeOf(Student.prototype, Person.prototype)
 
 
-console.log(new GetName(this.name).name, new GetName(this.name, "Student").student)
+//console.log(new GetName("Géza").name, new GetName(this.name, "Student").student)
+
+//_______________________________________________________________________________________
+//19.feladat
+
+class Person{
+    constructor(name){
+        this.name = name;
+    }
+    nameSeparator(){
+        return ":";
+    }   
+}
+
+class FullnameOfPerson extends Person{
+    constructor(name, student){
+        super(name);
+        this.student = student;
+    }
+
+    fullname(){
+        return this.name + super.nameSeparator() + this.student;
+    }
+}
+
+const personproperties = new FullnameOfPerson("Géza", "Student");
+console.log(personproperties.name);
+console.log(personproperties.fullname());
+
+
+
 
 //_______________________________________________________________________________________
 //Órai anyag
