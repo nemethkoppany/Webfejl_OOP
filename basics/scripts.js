@@ -34,7 +34,7 @@
 //_______________________________________________________________________________________
 //12.feladattól 17. feladatig
 function Person(name, student){
-    this.name = name;
+    this.name = "Géza";
     this.student = student;
 }
 
@@ -47,7 +47,7 @@ function GetName(name, student){
 //Object.setPrototypeOf(Student.prototype, Person.prototype)
 
 
-console.log(new GetName("Géza").name, new GetName("Géza", "Student").student)
+console.log(new GetName(this.name).name, new GetName(this.name, "Student").student)
 
 //_______________________________________________________________________________________
 //Órai anyag
