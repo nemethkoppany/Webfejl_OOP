@@ -52,26 +52,26 @@
 //_______________________________________________________________________________________
 //19.feladat
 
-class Person{
-    constructor(name){
-        this.name = name;
-    }
+// class Person{
+//     constructor(name){
+//         this.name = name;
+//     }
 
    
      
-}
+// }
 
-class Student extends Person{
-    constructor(name, school){
-        super(name);
-        this.school = school;
-    }
+// class Student extends Person{
+//     constructor(name, school){
+//         super(name);
+//         this.school = school;
+//     }
 
    
-}
+// }
 
-const personproperties = new Student("Géza", "Bolyai János Technikum");
-console.log(personproperties.name, personproperties.school)
+// const personproperties = new Student("Géza", "Bolyai János Technikum");
+// console.log(personproperties.name, personproperties.school)
 
 
 
@@ -80,49 +80,42 @@ console.log(personproperties.name, personproperties.school)
 //20.feladat
 
 
-// class Animal{
-//     constructor(name, sound){
-//         this.name = name;
-//         this.sound = sound;
-//     }
-//     sound(){
-//         return this.sound;
-//     }
-// }
+class Animal{
+    constructor(name, sound){
+        this.name = name;
+        this.sound = sound;
+    }
+}
 
-// class Mammal extends Animal{
-//     constructor(name, sound, walk){
-//         super(name, sound);
-//         this.walk = walk;
-//     }
+class Mammal extends Animal{
+    constructor(name, sound, walk){
+        super(name, sound);
+        this.walk = walk;
+    }
  
-//     walk(){
-//         return this.walk
-//     }
+   
 
-//     action(){
-//         console.log( "a" + this.name +  this.sound + " hallat és " + this.walk);
-//     }
+    action(){
+        console.log( "a" + this.name +  this.sound + " hallat és " + this.walk);
+    }
 
-// }
+}
 
-// class Bird extends Animal{
-//     constructor(name, sound, fly){
-//         super(name, sound);
-//         this.fly = fly;
-//     }
-//     fly(){
-//         return this.fly
-//     }
-//     action(){
-//         console.log( "a" + this.name +  this.sound + " hallat és " + this.fly);
-//     }
-// }
-// const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangok", "sétál") 
-// const animal2 = new Bird(' flamingó', " flmaingó hangok", "repül ")
+class Bird extends Animal{
+    constructor(name, sound, fly){
+        super(name, sound);
+        this.fly = fly;
+    }
+   
+    action(){
+        console.log( "a" + this.name +  this.sound + " hallat és " + this.fly);
+    }
+}
+const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangokat", "sétál") 
+const animal2 = new Bird(' flamingó', " flamingó hangokat", "repül ")
 
-// animal1.action();
-// animal2.action();
+animal1.action();
+animal2.action();
 
 
 //_______________________________________________________________________________________
