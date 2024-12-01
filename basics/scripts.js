@@ -104,7 +104,7 @@ class Mammal extends Animal{
 }
 
 class Bird extends Animal{
-    constructor(name, sound, fly){
+    constructor(name, sound){
         super(name, sound);
     }
     fly(){
