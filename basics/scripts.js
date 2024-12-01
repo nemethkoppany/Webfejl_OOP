@@ -42,14 +42,15 @@ function(){
     return this.name
 }
 
-Person.prototype.Student = 
-function(school){
+function Student(school){
     this.school = school;
 }
 
 const person = new Person();
-person.Student("Eötvös Loránd Tudományegyetem");
-console.log(person.GetName(), person.school);
+const student = new Student("Bolyai János Technikum");
+
+console.log(student.school);
+console.log(person.GetName());
 
 
 //_______________________________________________________________________________________
