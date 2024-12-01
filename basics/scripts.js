@@ -33,8 +33,8 @@
 
 //_______________________________________________________________________________________
 //12.feladattól(néhány helyen átalakítva) 
-function Person(){
-    this.name = "Géza";
+function Person(name){
+    this.name = name;
    
 }
 
@@ -43,14 +43,14 @@ function(){
     return this.name
 }
 
-function Student(school){
-    Person.call(this)
+function Student(name, school){
+    Person.call(this,name)
     this.school = school;
 }
 
 
 
-const student = new Student("Bolyai János Technikum")
+const student = new Student("Géza","Bolyai János Technikum")
 console.log(student.name, student.school);
 
 
