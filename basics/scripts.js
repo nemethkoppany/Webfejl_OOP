@@ -33,53 +33,45 @@
 
 //_______________________________________________________________________________________
 //12.feladattól(néhány helyen átalakítva) 
-function Person(name){
-    this.name = name;
+// function Person(name){
+//     this.name = name;
    
-}
-
-Person.prototype.GetName = 
-function(){
-    return this.name
-}
-
-function Student(name, school){
-    Person.call(this,name)
-    this.school = school;
-}
+// }
 
 
 
-const student = new Student("Géza","Bolyai János Technikum")
-console.log(student.name, student.school);
+// function Student(name, school){
+//     Person.call(this,name)
+//     this.school = school;
+// }
+
+// const student = new Student("Géza","Bolyai János Technikum")
+// console.log(student.name, student.school);
 
 
 //_______________________________________________________________________________________
 //19.feladat
 
-// class Person{
-//     constructor(name){
-//         this.name = name;
-//     }
-//     nameSeparator(){
-//         return ":";
-//     }   
-// }
+class Person{
+    constructor(name){
+        this.name = name;
+    }
 
-// class FullnameOfPerson extends Person{
-//     constructor(name, student){
-//         super(name);
-//         this.student = student;
-//     }
+   
+     
+}
 
-//     fullname(){
-//         return this.name + super.nameSeparator() + this.student;
-//     }
-// }
+class Student extends Person{
+    constructor(name, school){
+        super(name);
+        this.school = school;
+    }
 
-// const personproperties = new FullnameOfPerson("Géza", "Student");
-// console.log(personproperties.name);
-// console.log(personproperties.fullname());
+   
+}
+
+const personproperties = new Student("Géza", "Bolyai János Technikum");
+console.log(personproperties.name, personproperties.school)
 
 
 
