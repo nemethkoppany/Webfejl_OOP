@@ -85,37 +85,46 @@ class Animal{
         this.name = name;
         this.sound = sound;
     }
+    sounds(){
+        console.log(this.name + this.sound + " hallat");
+    }
 }
 
 class Mammal extends Animal{
-    constructor(name, sound, walk){
+    constructor(name, sound){
         super(name, sound);
-        this.walk = walk;
     }
  
-   
+   walk(){
+    console.log(`${this.name} sétál`);
+   }
 
-    action(){
-        console.log( "a" + this.name +  this.sound + " hallat és " + this.walk);
-    }
+    
 
 }
 
 class Bird extends Animal{
     constructor(name, sound, fly){
         super(name, sound);
-        this.fly = fly;
+    }
+    fly(){
+        console.log(`${this.name} repül`)
     }
    
-    action(){
-        console.log( "a" + this.name +  this.sound + " hallat és " + this.fly);
-    }
+  
 }
-const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangokat", "sétál") 
-const animal2 = new Bird(' flamingó', " flamingó hangokat", "repül ")
+const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangokat") 
+const animal2 = new Bird(' flamingó', " flamingó hangokat")
 
-animal1.action();
-animal2.action();
+
+
+animal1.walk(); 
+animal1.sounds();
+
+
+
+animal2.fly();
+animal2.sounds();
 
 
 //_______________________________________________________________________________________
