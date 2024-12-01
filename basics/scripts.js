@@ -48,14 +48,10 @@ function Student(school){
     this.school = school;
 }
 
-Object.setPrototypeOf(Student.prototype, Person.prototype);
 
 
-
-
-const person = new Student("Bolyai János Technikum");
-
-console.log(person.GetName(), person.school);
+const student = new Student("Bolyai János Technikum")
+console.log(student.name, student.school);
 
 
 //_______________________________________________________________________________________
