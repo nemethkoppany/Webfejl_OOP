@@ -32,10 +32,10 @@
 
 
 //_______________________________________________________________________________________
-//12.feladattól 
-function Person(school){
+//12.feladattól(néhány helyen átalakítva) 
+function Person(){
     this.name = "Géza";
-    this.school = school
+   
 }
 
 Person.prototype.GetName = 
@@ -44,7 +44,8 @@ function(){
 }
 
 function Student(school){
-    Person.call(school)
+    Person.call(this)
+    this.school = school;
 }
 
 Object.setPrototypeOf(Student.prototype, Person.prototype);
@@ -52,7 +53,7 @@ Object.setPrototypeOf(Student.prototype, Person.prototype);
 
 
 
-const person = new Person("Bolyai János Technikum");
+const person = new Student("Bolyai János Technikum");
 
 console.log(person.GetName(), person.school);
 
