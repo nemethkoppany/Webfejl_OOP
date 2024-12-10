@@ -33,20 +33,20 @@
 
 //_______________________________________________________________________________________
 //12.feladattól(néhány helyen átalakítva) 
-// function Person(name){
-//     this.name = name;
+function Person(name){
+    this.name = name;
    
-// }
+}
 
 
 
-// function Student(name, school){
-//     Person.call(this,name)
-//     this.school = school;
-// }
+function Student(name, school){
+    Person.call(this,name)
+    this.school = school;
+}
 
-// const student = new Student("Géza","Bolyai János Technikum")
-// console.log(student.name, student.school);
+const student = new Student("Géza","Bolyai János Technikum")
+console.log(student.name, student.school);
 
 
 //_______________________________________________________________________________________
