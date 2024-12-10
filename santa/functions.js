@@ -3,19 +3,28 @@
  * 
  * @param {Companion} companion 
  */
-function createRow(companion){
+function createRow(companion) {
     const table = document.getElementById('companions');
     const tbody = table.querySelector('tbody');
     const tableRow = document.createElement('tr');
+    const name = createCell(tableRow);
+    name.innerHTML = companion.teljesnev(); 
+
+    tableRow.id = companion.id;
     tbody.appendChild(tableRow);
 
-   // TODO 7
+    const reszleg = createCell(tableRow);
+    reszleg.innerHTML = companion.reszleg; 
 
-    const action = createCell(tableRow)
+    const action = createCell(tableRow);
     const button = document.createElement('button');
     button.innerHTML = 'Megtekint';
-    action.appendChild(button)
-    button.addEventListener('click', checkEventListener)
+
+    const id = createCell(tableRow);
+    id.innerHTML = companion.id;
+
+    action.appendChild(button);
+    button.addEventListener('click', checkEventListener);
 }
 
 /**
@@ -70,16 +79,18 @@ function refreshProductList(companion){ //TODO
  * 
  * @param {HTMLFormElement} form 
  */
-function addCompanion(form){ //TODO 
-    const firstName =form.querySelector('#cfirstname')
-    const lastname =form.querySelector('#clastname')
-    const area = form.querySelector('#carea')
-    const firstNameValue = firstName.value;
-    const lastNameValue = lastname.value;
-    const areaValue = area.value;
-    // TODO 6
-}
+function addCompanion(form) {
+    const firstName = form.querySelector('#cfirstname'); 
+    const lastname = form.querySelector('#clastname'); 
+    const area = form.querySelector('#carea'); 
+    const firstNameValue = firstName.value; 
+    const lastNameValue = lastname.value; 
+    const areaValue = area.value; 
 
+    
+    const mano1 = new Companion(firstNameValue, lastNameValue, areaValue); 
+    factory.addMano(mano1); 
+}
 /**
  * 
  * Add product function for the productformelement

@@ -33,20 +33,20 @@
 
 //_______________________________________________________________________________________
 //12.feladattól(néhány helyen átalakítva) 
-function Person(name){
-    this.name = name;
+// function Person(name){
+//     this.name = name;
    
-}
+// }
 
 
 
-function Student(name, school){
-    Person.call(this,name)
-    this.school = school;
-}
+// function Student(name, school){
+//     Person.call(this,name)
+//     this.school = school;
+// }
 
-const student = new Student("Géza","Bolyai János Technikum")
-console.log(student.name, student.school);
+// const student = new Student("Géza","Bolyai János Technikum")
+// console.log(student.name, student.school);
 
 
 // _______________________________________________________________________________________
@@ -82,50 +82,50 @@ console.log(student.name, student.school);
 //20.feladat
 
 
-// class Animal{//Animal class létrehozása
-//     constructor(name, sound){//Tulajdonságok megadása
-//         this.name = name;//Minden állatnak van neve
-//         this.sound = sound;//Minden állat tud hangot kiadni
-//     }
-//     sounds(){//Cselekvés létrehozása
-//         console.log(this.name + this.sound + " hallat");//Kiíratja a console-ra, hogy milyen állat, milyen hangot ad ki.
-//     }
-// }
+class Animal{//Animal class létrehozása
+    constructor(name, sound){//Tulajdonságok megadása
+        this.name = name;//Minden állatnak van neve
+        this.sound = sound;//Minden állat tud hangot kiadni
+    }
+    sounds(){//Cselekvés létrehozása
+        console.log(this.name + this.sound + " hallat");//Kiíratja a console-ra, hogy milyen állat, milyen hangot ad ki.
+    }
+}
 
-// class Mammal extends Animal{//Hozzákötünk egy Mammal osztályt az Animals-hoz
-//     constructor(name, sound){//Tulajdonságok
-//         super(name, sound);//Az Animal-ban megadott név és hang tulajdonságokat hozzákötjük a Mammal-hoz
-//     }
+class Mammal extends Animal{//Hozzákötünk egy Mammal osztályt az Animals-hoz
+    constructor(name, sound){//Tulajdonságok
+        super(name, sound);//Az Animal-ban megadott név és hang tulajdonságokat hozzákötjük a Mammal-hoz
+    }
  
-//    walk(){//Cselekvés: tud sétálni az emlős(ez az elnevezés kissé zavaró lehet egy bálna esetén)
-//     console.log(`${this.name} sétál`);//kiíratás
-//    }
+   walk(){//Cselekvés: tud sétálni az emlős(ez az elnevezés kissé zavaró lehet egy bálna esetén)
+    console.log(`${this.name} sétál`);//kiíratás
+   }
 
     
 
-// }
+}
 
-// class Bird extends Animal{//Hozzákötünk egy Bird osztályt az Animals-hoz
-//     constructor(name, sound){//Tulajdonságok
-//         super(name, sound);//Az Animal-ban megadott név és hang tulajdonságokat hozzákötjük a Bird-höz
-//     }
-//     fly(){//Cselekvés: tud repülni a madár(zavaró elnevezés a pingvin esetén)
-//         console.log(`${this.name} repül`)
-//     }
+class Bird extends Animal{//Hozzákötünk egy Bird osztályt az Animals-hoz
+    constructor(name, sound){//Tulajdonságok
+        super(name, sound);//Az Animal-ban megadott név és hang tulajdonságokat hozzákötjük a Bird-höz
+    }
+    fly(){//Cselekvés: tud repülni a madár(zavaró elnevezés a pingvin esetén)
+        console.log(`${this.name} repül`)
+    }
    
   
-// }
-// //Két új pédány deklarálása, az egyik a Mammal-é, a másik a Bird-é
-// const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangokat") 
-// const animal2 = new Bird(' flamingó', " flamingó hangokat")
+}
+//Két új pédány deklarálása, az egyik a Mammal-é, a másik a Bird-é
+const  animal1 = new Mammal(' kacsacsőrű emlős', " kacsacsőrű emlős hangokat") 
+const animal2 = new Bird(' flamingó', " flamingó hangokat")
 
 
-// //Cselekvések meghívása
-// animal1.walk(); 
-// animal1.sounds();
+//Cselekvések meghívása
+animal1.walk(); 
+animal1.sounds();
 
-// animal2.fly();
-// animal2.sounds();
+animal2.fly();
+animal2.sounds();
 
 
 // _______________________________________________________________________________________

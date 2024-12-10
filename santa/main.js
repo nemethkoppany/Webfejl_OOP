@@ -43,13 +43,19 @@ document.getElementById('product').addEventListener('submit',function(e){
 /**
  * table render
  */
-function initTable(){
-
-    // TODO 6
+function initTable() {
+    for (let i = 0; i < companionList.length; i++) {
+        const lista = companionList[i];
+        const mano = new Companion(lista.firstName, lista.lastName, lista.area, i); // A keresztnév az ID
+        for (const product of lista.products) {
+            mano.produktum(product); 
+        }
+        factory.addMano(mano); 
+    }
+    console.log(factory);
 }
 
-
-initTable()
+initTable();
 
 /**
  * 
