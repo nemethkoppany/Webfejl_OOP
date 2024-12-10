@@ -46,7 +46,7 @@ document.getElementById('product').addEventListener('submit',function(e){
 function initTable() {
     for (let i = 0; i < companionList.length; i++) {
         const lista = companionList[i];
-        const mano = new Companion(lista.firstName, lista.lastName, lista.area, i); // A keresztnév az ID
+        const mano = new Companion(lista.firstName, lista.lastName, lista.area); // A keresztnév az ID
         for (const product of lista.products) {
             mano.produktum(product); 
         }

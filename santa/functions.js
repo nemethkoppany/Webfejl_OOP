@@ -20,8 +20,7 @@ function createRow(companion) {
     const button = document.createElement('button');
     button.innerHTML = 'Megtekint';
 
-    const id = createCell(tableRow);
-    id.innerHTML = companion.id;
+    
 
     action.appendChild(button);
     button.addEventListener('click', checkEventListener);
