@@ -45,12 +45,13 @@ document.getElementById('product').addEventListener('submit',function(e){
  */
 function initTable() {
     for (let i = 0; i < companionList.length; i++) {
-        const lista = companionList[i];
-        const mano = new Companion(lista.firstName, lista.lastName, lista.area); // A keresztnév az ID
-        for (const product of lista.products) {
+        const lista_elem = companionList[i];
+        const mano = new Companion( lista_elem.firstName, lista_elem.lastName, lista_elem.area,i); // A keresztnév az ID
+        for (const product of lista_elem.products) {
             mano.produktum(product); 
         }
         factory.addMano(mano); 
+        
     }
     console.log(factory);
 }
@@ -66,5 +67,5 @@ initTable();
 function checkEventListener(e){
     const row = e.currentTarget.parentElement.parentElement;
     const companionId = row.id;
-    // TODO 10
+    factory.ShowProducts(companionId);
 }

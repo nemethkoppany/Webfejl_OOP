@@ -26,6 +26,10 @@
             width: fit-content;
             border: 5px solid rgb(84, 121, 190);
         }
+        #addArea{
+            width: fit-content;
+            border: 5px solid rgb(191, 41, 41);
+        }
 
         .row-container{
             display: flex;
@@ -61,6 +65,11 @@
     </table>
 </div>
     <div class="row-container">
+        <form id="addArea">
+            <label for="area">Adjon meg egy részleget</label>
+            <input type="text" id="area-name" name="area-name"><br>
+            <button type="submit">Részleg hozzáadása</button>
+        </form>
         <form id="companion">
             <label for="cfirstname">Keresztnév</label><br>
             <input id="cfirstname" name="cfirstname"><br><br>

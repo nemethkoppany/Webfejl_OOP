@@ -1,8 +1,9 @@
 
-// TODO 1, 2, 3, 4, 9, 10
+
 class Factory {
     constructor() {
         this.manoLista = []; 
+        this.reszlegLista = [];
     }
 
     Id() {
@@ -12,9 +13,30 @@ class Factory {
     addMano(mano) {
         this.manoLista.push(mano);
         createRow(mano); 
+        appendToSelector(mano);
+    }
+    ShowProducts(id){
+        for(let i = 0; i < this.manoLista.length;i++){
+            if(this.manoLista[i].id == id){
+                refreshProductList(this.manoLista[i])
+            }
+        }
+    }
+
+    newProductforMano(product, manoid){
+        for(let i = 0; i < this.manoLista.length; i++){
+            if(this.manoLista[i].id == manoid){
+                 this.manoLista[i].produktum(product);
+                 this.ShowProducts(manoid);
+            }
+        }
+    }
+
+    addReszleg(reszleg){
+        this.reszlegLista.push(reszleg);
     }
 }
-// TODO 5
+
 class Companion {
     constructor(keresztnev, vezeteknev, reszleg, id) {
         this.id = id; 
@@ -32,4 +54,6 @@ class Companion {
     produktum(produktum) {
         this.produktumok.push(produktum); 
     }
+
+    
 }
