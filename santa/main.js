@@ -26,15 +26,15 @@ const companionList = [
         products: ['zokni']
     },
 ]
-const factory = new Factory();
+const factory = new Factory();//A factory új példánya
 
-document.getElementById('companion').addEventListener('submit',function(e){
-    e.preventDefault();
-    const form =  e.currentTarget
-    addCompanion(form, factory);
+document.getElementById('companion').addEventListener('submit',function(e){//Figyeli a submitot és az id alapján bekéri a formot
+    e.preventDefault();//ez miatt nem submitelődik magától 
+    const form =  e.currentTarget//
+    addCompanion(form, factory);//Az addcompanion meghívása a gomb lenyomásával
 });
 
-document.getElementById('product').addEventListener('submit',function(e){
+document.getElementById('product').addEventListener('submit',function(e){//Ugyan az csak a másik űrlappal
     e.preventDefault();
     const form = e.currentTarget;
     addProductForm(form, factory)
@@ -44,19 +44,19 @@ document.getElementById('product').addEventListener('submit',function(e){
  * table render
  */
 function initTable() {
-    for (let i = 0; i < companionList.length; i++) {
-        const lista_elem = companionList[i];
-        const mano = new Companion( lista_elem.firstName, lista_elem.lastName, lista_elem.area,i); // A keresztnév az ID
-        for (const product of lista_elem.products) {
-            mano.produktum(product); 
+    for (let i = 0; i < companionList.length; i++) {//végigmegy a tömbön
+        const lista_elem = companionList[i];//az aktuális listaelem
+        const mano = new Companion( lista_elem.firstName, lista_elem.lastName, lista_elem.area,i); //Új Companion példány
+        for (const product of lista_elem.products) {//végigmegy a listaelem termékein
+            mano.produktum(product); //Hozzáadjuk a terméket a manó terméklistájához
         }
-        factory.addMano(mano); 
+        factory.addMano(mano); //A manót hozzáadjuk a manók listájához
         
     }
     console.log(factory);
 }
 
-initTable();
+initTable();//Az initTable meghívása
 
 /**
  * 
@@ -65,7 +65,7 @@ initTable();
  * @param {EventTarget} e 
  */
 function checkEventListener(e){
-    const row = e.currentTarget.parentElement.parentElement;
-    const companionId = row.id;
-    factory.ShowProducts(companionId);
+    const row = e.currentTarget.parentElement.parentElement;// Az eseményt kiváltó elem (gomb) szülőjének a szülőjét (a táblázat sorát) választjuk ki
+    const companionId = row.id;//A sor id-je kiszervezve egy változóba
+    factory.ShowProducts(companionId);//az aktuálisan kiválasztott manó(az id-vel választottuk ki) termékeinek kiíratása
 }

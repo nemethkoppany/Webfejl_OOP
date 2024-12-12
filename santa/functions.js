@@ -3,30 +3,31 @@
  * 
  * @param {Companion} companion 
  */
+//Új sor létrehozása a mano adataival
 function createRow(companion) {
-    const table = document.getElementById('companions');
-    const tbody = table.querySelector('tbody');
-    const tableRow = document.createElement('tr');
+    const table = document.getElementById('companions');//table element megszerzése az Id-vel
+    const tbody = table.querySelector('tbody');//A tbody elem megserzése
+    const tableRow = document.createElement('tr');//új tr element kreálása
 
-    tableRow.id = companion.id;
+    tableRow.id = companion.id;//a tr element id-je a companion id-jével egyenlő
     tbody.appendChild(tableRow);
 
-    const name = createCell(tableRow);
-    name.innerHTML = companion.teljesnev(); 
+    const name = createCell(tableRow);//A tablerow-n belül cellát kreálunk
+    name.innerHTML = companion.teljesnev(); //a cella tartalma az aktuális companion(manó) teljes neve
 
    
 
     const reszleg = createCell(tableRow);
-    reszleg.innerHTML = companion.reszleg; 
+    reszleg.innerHTML = companion.reszleg; //A reszleg cella tartalma az aktuális companion részlege
 
     const action = createCell(tableRow);
-    const button = document.createElement('button');
-    button.innerHTML = 'Megtekint';
+    const button = document.createElement('button');//gomb
+    button.innerHTML = 'Megtekint';//A gombra ez van ráírva
 
     
 
-    action.appendChild(button);
-    button.addEventListener('click', checkEventListener);
+    action.appendChild(button);//ha megnyomod a gombot készít egy új cellát
+    button.addEventListener('click', checkEventListener);//Ha a gombra rákattintanak, meghívódik a checkEventListener függvény
 }
 
 /**
@@ -36,9 +37,9 @@ function createRow(companion) {
  * @returns {HTMLTableCellElement}
  */
 function createCell(parentElement){
-    const newCell = document.createElement('td');
-    parentElement.appendChild(newCell);
-    return newCell;
+    const newCell = document.createElement('td');//új td element
+    parentElement.appendChild(newCell);//hozzárendeljük a parentElementhez a td elementet
+    return newCell;//Visszatérés
 }
 
 /**
@@ -51,10 +52,11 @@ function appendToSelector(mano){
     const selector = productForm.querySelector('#companionlist');
 
     const option = document.createElement('option');
-    option.value = mano.id;
-    option.text = mano.teljesnev();
+    option.value = mano.id;//A az option értéke az aktuális mano id-je
+    option.text = mano.teljesnev();// Az option szövege az aktuális manó teljes neve
 
-    selector.appendChild(option);
+
+    selector.appendChild(option);//Az optiont hozzárendeljük a legördülő menühöz
 }
 
 
@@ -67,19 +69,19 @@ function appendToSelector(mano){
 function refreshProductList(companion){ 
 
     const companionName = document.getElementById('companion_name');
-    companionName.innerHTML = companion.teljesnev();
-    companionName.style.display = 'block';
+    companionName.innerHTML = companion.teljesnev();//a companionName szövege az aktuális manó teljes neve
+    companionName.style.display = 'block';// A companionName elem megjelenítését biztosítjuk (alapértelmezett értéke "none") így láthatóvá válik és új sorban jelenik meg 
     const productTable = document.getElementById('products');
-    productTable.style.display = 'table';
+    productTable.style.display = 'table';//Táblázatként jelenik meg a productTable
     const productTableBody = productTable.querySelector('tbody')
-    productTableBody.innerHTML ='';
-   for(let i = 0; i < companion.produktumok.length; i++){
-    const product = companion.produktumok[i];
-    const row = document.createElement("tr");
-    const td = document.createElement("td");
-    td.innerHTML = product;
-    row.appendChild(td);
-    productTableBody.appendChild(row);
+    productTableBody.innerHTML ='';//Lenullázzuk a táblázat tartalmát
+   for(let i = 0; i < companion.produktumok.length; i++){//Végigmegyünk a produktumok listán
+    const product = companion.produktumok[i];//product = produktumok aktuális eleme
+    const row = document.createElement("tr");//tr elem kreálása
+    const td = document.createElement("td");//td elem kreálása
+    td.innerHTML = product;//td-bne legyen benne a lista aktuális eleme
+    row.appendChild(td);//hozzáadjuk a td-t a tr-hez
+    productTableBody.appendChild(row);//A tr-t hozzáadjuk a body-hoz
     
    }
 }
@@ -98,9 +100,9 @@ function addCompanion(form, factory) {
     const lastNameValue = lastname.value; 
     const areaValue = area.value; 
 
-    const id = factory.Id()
-    const uj_mano = new Companion( firstNameValue, lastNameValue, areaValue, id); 
-    factory.addMano(uj_mano); 
+    const id = factory.Id()//id = a gyárban dolgozó aktuális manó id-je
+    const uj_mano = new Companion( firstNameValue, lastNameValue, areaValue, id); //Új példány
+    factory.addMano(uj_mano); //Hozzáadjuk a gyárhoz a manot
 }
 /**
  * 
@@ -109,11 +111,11 @@ function addCompanion(form, factory) {
  * @param {HTMLFormElement} form 
  */
 
-function addProductForm(form, factory){ // TODO
+function addProductForm(form, factory){ 
     const selector =form.querySelector('#companionlist')
     const productName = form.querySelector('#productname')
-    const companionId = selector.value;
-    const product = productName.value;
-    factory.newProductforMano(product, companionId);
-    // 12
+    const companionId = selector.value;//A companion id-je a a legordülő aktuálisan választott értéke
+    const product = productName.value;//A product a termék értéke azaz a neve
+    factory.newProductforMano(product, companionId);// A newProductforMano metódust meghívja a termékkel és a kiválasztott manó ID-jével, hogy új terméket rendeljen a manóhoz
+
 }
