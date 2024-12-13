@@ -53,15 +53,26 @@ class Person{
 }
 
 function init(){
+    const form = document.getElementById("form"); 
     for(const pers of array){
         const person = new Person(pers);
         person.render(document.getElementById("tbodyId"));
     }
+    const formController = new FormController(form);
+    form.addEventListener("submit",function(e){
+        e.preventDefault();
+        const obj = 
+        {
+            firstname1: formController.firstname1,
+            firstname2: formController.firstname2,
+            lastname: formController.lastname
+        }
+        const person = new Person(obj);
+        person.render(document.getElementById("tbodyId"));
+    })
 }
 
-init();
-
-class formController{//A formon belüli inputok értékeive tér vissza
+class FormController{//A formon belüli inputok értékeive tér vissza
     #form
     constructor(form){
         this.#form = form;
@@ -79,6 +90,12 @@ class formController{//A formon belüli inputok értékeive tér vissza
     }
     get firstname2(){
         const firstname2 = this.#getInputById("firstname2");
+        if(firstname2.value !== undefined){
         return firstname2.value;
+        }
+        else{
+            this.td_cell.colSpan = 2;
+        }
     }
 }
+init();
