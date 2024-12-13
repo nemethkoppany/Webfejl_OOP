@@ -60,3 +60,25 @@ function init(){
 }
 
 init();
+
+class formController{//A formon belüli inputok értékeive tér vissza
+    #form
+    constructor(form){
+        this.#form = form;
+    }
+    #getInputById(id){
+        return this.#form.querySelector("#" + id);
+    }
+    get lastname(){
+        const lastname = this.#getInputById("lastname");
+        return lastname.value;
+    }
+    get firstname1(){
+        const firstname1 = this.#getInputById("firstname1");
+        return firstname1.value;
+    }
+    get firstname2(){
+        const firstname2 = this.#getInputById("firstname2");
+        return firstname2.value;
+    }
+}
