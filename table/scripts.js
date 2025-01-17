@@ -38,7 +38,7 @@ class Person{
         td_cell.innerHTML = this.firstname1;
         row.appendChild(td_cell);
 
-        if(this.firstname2 !== undefined){
+        if(this.firstname2 !== "" && this.firstname2 !== undefined){
             const td_cell2 = document.createElement("td");
             td_cell2.innerHTML = this.firstname2;
             row.appendChild(td_cell2);
@@ -61,6 +61,15 @@ function init(){
     const formController = new FormController(form);
     form.addEventListener("submit",function(e){
         e.preventDefault();
+
+        let valid = true;
+        if(!formController.lastname){
+            valid = false;
+        }
+        if(!formController.firstname1){
+            valid = false;
+        }
+        if(valid){
         const obj = 
         {
             firstname1: formController.firstname1,
@@ -69,23 +78,40 @@ function init(){
         }
         const person = new Person(obj);
         person.render(document.getElementById("tbodyId"));
+    }
     })
 }
 
 class FormController{//A formon belüli inputok értékeive tér vissza
     #form
-    constructor(form){
+    #errormsg
+    constructor(form,errormsg){
         this.#form = form;
+        this.#errormsg = errormsg;
+    }
+    #seterrormsg(id, msg){
+        const input = this.#form.querySelector("#" + id);
+        const parentElement = input.parentElement;
+        const error = parentElement.querySelector(".error");
+        if(error){
+            error.innerHTML = msg;
+        }
     }
     #getInputById(id){
         return this.#form.querySelector("#" + id);
     }
     get lastname(){
         const lastname = this.#getInputById("lastname");
+        if(lastname.value.trim() === ""){
+            this.#seterrormsg("lastname","A vezetéknév megadása kötelező");
+        }
         return lastname.value;
     }
     get firstname1(){
         const firstname1 = this.#getInputById("firstname1");
+        if(firstname1.value.trim() === ""){
+            this.#seterrormsg("firstname1","A keresztnév megadása kötelező");
+        }
         return firstname1.value;
     }
     get firstname2(){
@@ -97,5 +123,6 @@ class FormController{//A formon belüli inputok értékeive tér vissza
             this.td_cell.colSpan = 2;
         }
     }
+ 
 }
 init();
