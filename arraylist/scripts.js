@@ -34,7 +34,8 @@ class ArrayList{
             set:function(value){
                 this.#state[index] = value
             },
-            writable: true
+            writable: true,
+            enumerable: true
         })
 
         //3.
@@ -44,7 +45,11 @@ class ArrayList{
     Clear(){
         this.#lenght = 0;
         this.#state = {};
+        for(const key in this){
+            delete this[key];
+        }
     }
+  
    
 }
 /*
