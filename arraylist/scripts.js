@@ -34,7 +34,6 @@ class ArrayList{
             set:function(value){
                 this.#state[index] = value
             },
-            writable: true,
             enumerable: true
         })
 
@@ -49,9 +48,29 @@ class ArrayList{
             delete this[key];
         }
     }
-  
+  Contains(compare){
+    for(let i = 0; i < this.Count; i++){
+        if(this.#state[i] == compare){
+            return true;
+        }
+        
+    }
+    return false;
+  }
    
 }
+const list = new ArrayList();
+const item1 = {name: "Banán"};
+const item2 = {name: "Alma"};
+const item3 = {name: "Alma"};
+
+list.Add(item1);
+list.Add(item2);
+
+console.log(list.Contains(item1));
+console.log(list.Contains(item2));
+console.log(list.Contains(item3));
+
 /*
 const pers = {};
 pers.a = "Ferenc";
