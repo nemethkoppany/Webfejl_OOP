@@ -93,3 +93,41 @@ Object.defineProperty(kakas, "név", {
 kakas.név = "asd";
 console.log(kakas)
 */
+
+class ArrayHTMLElement extends HTMLElement{
+    #tbody
+    constructor(){
+        super();
+    }
+    connectedCallback(){
+        const table = document.createElement("table");
+        this.appendChild(table);
+
+        const thead = document.createElement("thead");
+        table.appendChild(thead);
+
+        this.#tbody = document.createElement("tbody");
+        table.appendChild(this.#tbody);
+    }
+    /**
+    *@param {{nev:string, eletkor:Nuber}} item
+    */
+    addPersonRow(item){
+        const tr = document.createElement("tr");
+        this.#tbody.appendChild(tr);
+
+        const nev_td = document.createElement("td");
+        nev_td.innerHTML = item.nev;
+        tr.appendChild(nev_td);
+
+        const eletkor_td = document.createElement("td");
+        eletkor_td.innerHTML = item.eletkor;
+        tr.appendChild(eletkor_td);
+    }
+}
+customElements.define("array-table", ArrayHTMLElement)
+const ArrayTable = new ArrayHTMLElement();
+
+document.body.appendChild(ArrayTable);
+
+ArrayTable.addPersonRow({nev:"Béla",eletkor:22});
