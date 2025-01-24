@@ -28,10 +28,10 @@ class ArrayList{
 
         //Az aktuális indexel el akarjuk érni(pl.: array[0]) a hozzáadott elemet a példányon keresztül
         Object.defineProperty(this, index, {
-            get: function(){
+            get: () => {
                 return this.#state[index]
             },
-            set:function(value){
+            set: (value) => {
                 this.#state[index] = value
             },
             enumerable: true
