@@ -5,14 +5,16 @@ class ArrayList{
      */
     #lenght
     #state
+    #arrayHTMLTable
 
     get Count(){
         return this.#lenght;
     }
 
-    constructor(){
+    constructor(arrayHTMLTable = undefined){
         this.#lenght = 0;
         this.#state = {};
+        this.#arrayHTMLTable = arrayHTMLTable;
     }
     Add(item){
         //Hossz megnövelés
@@ -36,7 +38,10 @@ class ArrayList{
             },
             enumerable: true
         })
-
+        if(this.#arrayHTMLTable){
+            this.#arrayHTMLTable.addPersonRow(item);
+          }
+       
         //3.
         //Inkrementáljuk a lenght tulajdonságot
         this.#lenght++;
@@ -57,7 +62,7 @@ class ArrayList{
     }
     return false;
   }
-   
+ 
 }
 const list = new ArrayList();
 const item1 = {name: "Banán"};
@@ -70,6 +75,9 @@ list.Add(item2);
 console.log(list.Contains(item1));
 console.log(list.Contains(item2));
 console.log(list.Contains(item3));
+
+
+
 
 /*
 const pers = {};
@@ -131,3 +139,15 @@ const ArrayTable = new ArrayHTMLElement();
 document.body.appendChild(ArrayTable);
 
 ArrayTable.addPersonRow({nev:"Béla",eletkor:22});
+
+const array = new ArrayList(ArrayTable)
+array.Add({nev:"István", eletkor:45})
+
+const button = document.createElement("button");
+button.innerHTML = "hozzáad";
+document.body.appendChild(button);
+
+button.addEventListener("click", () =>{
+    const pers = {nev:"Gergő", eletkor:12}
+    array.Add(pers);
+})
