@@ -104,6 +104,7 @@ const datamanager = new Datamanager([{nev:"János", eletkor:34},{nev:"Ferenc", e
 const table = new Datatable(datamanager);
 
 const input = document.createElement("input");
+document.body.appendChild(input);s
 input.addEventListener('input', function(e){
-    
+
 })
