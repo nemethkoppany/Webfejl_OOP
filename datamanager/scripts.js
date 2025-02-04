@@ -1,5 +1,5 @@
 /**
- * @typedef {{nev: string , eletkor : Number}} Person
+ * @typedef {{nev: string , eletkor : number}} Person
  * @callback UpdateCallback
  * @param {Person[]} Person
  * @returns {void}
@@ -57,7 +57,7 @@ class Datamanager{
      * 
      * @param {String} name 
      */
-    fiterName(name){
+    filterName(name){
         const result = []
         for(const elem of this.#array){
             if(elem.nev.includes(name)){
@@ -71,6 +71,7 @@ class Datamanager{
     
 }
 class Datatable{
+    #tbody
     /**
      * 
      * @param {Datamanager} datamanager 
@@ -79,32 +80,44 @@ class Datatable{
         const table = document.createElement("table");
         document.body.appendChild(table);
 
-        const tbody = document.createElement("tbody");
-        table.appendChild(tbody);
+        this.#tbody = document.createElement("tbody");
+        table.appendChild(this.#tbody);
 
         datamanager.setUpdateCallback(
             (persons) => {
-                tbody.innerHTML = "";
-                for(const pers of persons){
-                    const tr = document.createElement("tr");
-                    tbody.appendChild(tr);
-                    const td1 = document.createElement("td");
-                    td1.innerHTML = pers.nev;
-                    tr.appendChild(td1);
-                    const td2 = document.createElement("td");
-                    td2.innerHTML = pers.eletkor;
-                    tr.appendChild(td2);
-                }
+               this.#renderTable(persons);
             }
         )
+    }
+    #renderTable(persons){
+        this.#tbody.innerHTML = "";
+        for(const person of persons){
+            const tr = document.createElement("tr");
+            this.#tbody.appendChild(tr);
+
+            const td = document.createElement("td");
+            td.innerHTML = person.nev;
+            tr.appendChild(td);
+
+            const td_2 = document.createElement("td");
+            td_2.innerHTML = person.eletkor;
+            tr.appendChild(td_2);
         }
+    }
     
 }
 const datamanager = new Datamanager([{nev:"János", eletkor:34},{nev:"Ferenc", eletkor:54},{nev:"István", eletkor:12}]);
 const table = new Datatable(datamanager);
 
 const input = document.createElement("input");
-document.body.appendChild(input);s
+document.body.appendChild(input);
 input.addEventListener('input', function(e){
+    datamanager.filterName(input.value);
+});
 
-})
+const input_2 = document.createElement("input");
+document.body.appendChild(input_2);
+input_2.addEventListener('input', function(e){
+    const AgeValue = Number(input_2.value);
+    datamanager.filterAge(AgeValue);
+});
