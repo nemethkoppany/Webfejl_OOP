@@ -47,7 +47,7 @@ class Datamanager{
     filterAge(age){
         const result = []
         for(const elem of this.#array){
-            if(elem.eletkor === age){
+            if(elem.eletkor == age){
                 result.push(elem);
             }
         }
