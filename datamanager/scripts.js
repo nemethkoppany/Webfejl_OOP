@@ -37,8 +37,7 @@ class Datamanager{
      * @param {Person} item 
      */
     Add(item){
-        this.#array.push(item)
-        this.#array;
+        this.#array.push(item);
     }
     /**
      * 
