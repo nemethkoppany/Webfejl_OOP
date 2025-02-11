@@ -92,7 +92,7 @@ class Datamanager{
         for(let i = 0; i < result.length - 1; i++){
             for(let j = i + 1; j < result.length; j++){
                 if(result[i].eletkor < result[j].eletkor){
-                    const tmp = result;
+                    const tmp = result[i];
                     result[i] = result[j];
                     result[j] = tmp;
                 }
@@ -101,16 +101,16 @@ class Datamanager{
         this.#updatecallback(result);
     }
 
-    //Ez még nagyon nem jó!!!
+  
     orderbyName(){
         const result = []
         for(const elem of this.#array){
             result.push(elem);
         }
         for(let i = 0; i < result.length - 1; i++){
-            for(let j = i + 1; j < result.length; j++){
-                if(){
-                    const tmp = result;
+            for(let j = i + 1; j < result.length; j++){//Végigmegyünk a result tömbön
+                if(result[i].nev.localeCompare(result[j].nev)){//A localeComapre-el hasonlítjuk össze a két nevet
+                    const tmp = result[i];//Egy segéd változóval kicseéljük a neveket
                     result[i] = result[j];
                     result[j] = tmp;
                 }
@@ -130,6 +130,28 @@ class Datatable{
     constructor(datamanager){
         const table = document.createElement("table");
         document.body.appendChild(table);
+
+        const thead = document.createElement("thead");
+        table.appendChild(thead);
+
+        const tr = document.createElement("tr");
+        thead.appendChild(tr);
+
+        const thOrderByName = document.createElement("th");
+        thOrderByName.innerHTML = "Név";
+        tr.appendChild(thOrderByName);
+
+        thOrderByName.addEventListener("click", () => {
+            datamanager.orderbyName()
+        });
+
+        const thOrderByAge = document.createElement("th");
+        thOrderByAge.innerHTML = "Életkor";
+        tr.appendChild(thOrderByAge);
+
+        thOrderByAge.addEventListener("click", () => {//Paraméter nélküli, kattintásra figyelő eseménykezelő
+            datamanager.orderbyAge();//Meghívja az orerbyAge függvényt
+        });
 
         this.#tbody = document.createElement("tbody");
         table.appendChild(this.#tbody);
