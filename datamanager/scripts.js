@@ -84,6 +84,7 @@ class Datamanager{
         this.#updatecallback(result);
     }
 
+    /* 
     orderbyAge(){
         const result = []
         for(const elem of this.#array){
@@ -119,8 +120,27 @@ class Datamanager{
         this.#updatecallback(result);
     }
     //<----------------2025.02.07 vége--------------->
-}
+    */
 
+    orderBy(callback){
+        const result = []
+        for(const elem of this.#array){
+            result.push(elem);
+        }
+       for(let i = 0; i < result.length - 1; i++){
+        for(let j = i + 1; j < result.length; j++){
+            if(callback(result[i], result[j]) > 0){
+                    const tmp = result[i];
+                    result[i] = result[j];
+                    result[j] = tmp;
+                }
+            }
+        }
+       this.#updatecallback(result);
+    }
+    
+
+}
 class Datatable{
     #tbody
     /**
@@ -142,15 +162,15 @@ class Datatable{
         tr.appendChild(thOrderByName);
 
         thOrderByName.addEventListener("click", () => {
-            datamanager.orderbyName()
+            datamanager.orderBy((nev1, nev2) => nev1.nev.localeCompare(nev2.nev));
         });
 
         const thOrderByAge = document.createElement("th");
         thOrderByAge.innerHTML = "Életkor";
         tr.appendChild(thOrderByAge);
 
-        thOrderByAge.addEventListener("click", () => {//Paraméter nélküli, kattintásra figyelő eseménykezelő
-            datamanager.orderbyAge();//Meghívja az orerbyAge függvényt
+        thOrderByAge.addEventListener("click", () => {
+            datamanager.orderBy((szam1, szam2) => szam1.eletkor - szam2.eletkor);
         });
 
         this.#tbody = document.createElement("tbody");
