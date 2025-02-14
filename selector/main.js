@@ -49,5 +49,6 @@ for(const elem of array){//Az objektumok alapján példányosítunk cardokat
     managerArray.push(card);
 }
 const manager = new Manager(managerArray);
-const deck = new DeckArea("deck");
-const solutionArea = new SolutionArea("solution");
+const deck = new DeckArea("deck", manager);
+const solutionArea = new SolutionArea("solution",manager);
+manager.start();

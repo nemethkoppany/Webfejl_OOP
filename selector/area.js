@@ -8,7 +8,7 @@ class Area{
     }
 
     /**
-     * 
+     * @param {Manager} manager
      * @param {string} cssclass beallitja az adott terület css osztályát 
      */
     constructor(cssclass){
@@ -16,6 +16,13 @@ class Area{
         this.#div = document.createElement('div');//Ezen a területen fogunk dolgozni a lszármazottaknál
         this.#div.className = cssclass;
         container.appendChild(this.#div);
+        manager.setFinishCallback((eredmeny) => {
+            container.innerHTML ="";
+            const div = document.createElement("div");
+            div.className = "result";
+            div.textContent = eredmeny;
+            container.appendChild(div)
+        })
     }
 
     /**
@@ -38,16 +45,49 @@ class Area{
  * Ez fogja tartalmazni a paklinkat, mindig egy darab kártyát jelenít meg
  */
 class DeckArea extends Area{
-    constructor(cssclass){
-        super(cssclass)
+    /**
+     * 
+     * @param {string} cssclass A css classt tartalmazza 
+     * @param {Manager} manager manager példányt tartalmazza
+     */
+    constructor(cssclass, manager){
+        super(cssclass,manager);
+        manager.setNextCardCallback((kartyaszoveg) => {// Ez fog lefutni amikor új kártyát húzunk, tehát meghívjuk a nextCardCallbacket
+            this.div.innerHTML = "";
+            const skipbutton = document.createElement("button");
+            skipbutton.textContent = "skip";
+            skipbutton.addEventListener("click", () => {
+                manager.nextCard();
+            })
+            this.div.appendChild(skipbutton);
+            const cardElement = document.createElement("div");
+            cardElement.textContent = kartyaszoveg;
+            cardElement.className = "largecard";
+            cardElement.addEventListener('click', ()=>{
+                manager.nextCard(kartyaszoveg);
+            })
+            this.div.appendChild(cardElement);
+        })
     }
 }
 
 /**
  * Ez fogja tartalmazni az igaznak tartott kártyáinkat
  */
+
 class SolutionArea extends Area{
-    constructor(cssclass){
-        super(cssclass)
+    /**
+     * 
+     * @param {string} cssclass 
+     * @param {Manager} manager 
+     */
+    constructor(cssclass, manager){
+        super(cssclass,manager);
+        manager.setAppendCardToSolutionCallback((kartyaszoveg) =>{
+            const card = document.createElement("div");
+            card.className = "card";
+            card.textContent = kartyaszoveg;
+            this.div.appendChild(card);
+        })
     }
 }
