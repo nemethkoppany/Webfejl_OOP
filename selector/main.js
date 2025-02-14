@@ -40,6 +40,14 @@ const array = [
       "right": false
     }
   ]
-
-  const deck = new DeckArea("deck");
+  /**
+   * @type {card[]}
+   */
+const managerArray = [];
+for(const elem of array){//Az objektumok alapján példányosítunk cardokat
+    const card = new Card(elem.text, elem.right);
+    managerArray.push(card);
+}
+const manager = new Manager(managerArray);
+const deck = new DeckArea("deck");
 const solutionArea = new SolutionArea("solution");
