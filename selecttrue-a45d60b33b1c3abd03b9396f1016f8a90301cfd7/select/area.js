@@ -3,21 +3,32 @@ class Area {
      get div(){
          return this.#div;
      }
-
      constructor(cssclass,manager){
         const container = this.#getContainer()
         this.#div = document.createElement('div');
+        this.#manager = manager;
         this.#div.className = cssclass;
         container.appendChild(this.#div);
-        manager.setFinishCallback(result => {
-            container.innerHTML = '';
+        manager.setFinishCallback(this.#finishCallback(container));
+     }
+ 
+     
+     #manager;
+     get manager() {
+        return this.#manager;
+    }
+
+
+    #finishCallback(containerDiv){
+        return result => {
+            containerDiv.innerHTML = '';
             const div = document.createElement('div');
             div.className = 'result';
             div.textContent = result;
-            container.appendChild(div);
-        })
-     }
- 
+            containerDiv.appendChild(div);
+        }
+    }
+
      #getContainer(){
          let container = document.querySelector('.container')
          if(!container){

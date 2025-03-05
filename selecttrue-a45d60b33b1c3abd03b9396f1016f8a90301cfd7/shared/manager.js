@@ -7,12 +7,15 @@ class Manager{
     #appanedCardToSolution
     #finishCallback
 
-
-    constructor(array){
+    constructor(array = []) {
         this.#array = array;
-        this.#solution = {}
+        this.#solution = {};
         this.#currentCardNumber = 0;
     }
+    
+    add(question) {
+        this.#array.push(question);
+    }    
 
     setNextCardCallback(callback){
         this.#nextCardCallback = callback;
